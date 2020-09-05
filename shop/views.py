@@ -5,14 +5,25 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.http import JsonResponse
 import random
+import json
 from .models import *
 
 
 # Create your views here.
 def homepage(request):
+    if request.user.is_authenticated:
+        customer=request.user.customer
+        order,created = Order.objects.get_or_create(customer=customer,complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items =[]
+        order = {'get_cart_total':0}
+        cartItems = {'get_cart_items':0}
     products = Product.objects.all()
     context = {
-        'products':products
+        'products':products,
+        'cartItems':cartItems,
     }
     return render(request,'category.html',context) 
 def cart(request):
@@ -31,4 +42,21 @@ def cart(request):
     }
     return render(request,'cart.html',context)
 def updateItem(request):
+    print('received')
+    data = json.loads(request.body)
+    productId = data['productId']
+    action = data['action']
+    print('Action',action)
+    print('Actios',productId)
+    customer=request.user.customer
+    product = Product.objects.get(id=productId)
+    order,created = Order.objects.get_or_create(customer=customer,complete=False)
+    orderItem,created = OrderItem.objects.get_or_create(order=order,product=product)
+    if action == 'add':
+        orderItem.quantity = (orderItem.quantity + 1)
+    elif action == 'remove':
+        orderItem.quantity = (orderItem.quantity - 1)
+    orderItem.save()
+    if orderItem.quantity <= 0:
+        orderItem.delete()
     return JsonResponse('item added',safe=False)
