@@ -18,8 +18,8 @@ def homepage(request):
         cartItems = order.get_cart_items
     else:
         items =[]
-        order = {'get_cart_total':0}
-        cartItems = {'get_cart_items':0}
+        order = {'get_cart_total':0,'get_cart_items':0,'shipping':False}
+        cartItems = order['get_cart_items']
     products = Product.objects.all()
     context = {
         'products':products,
@@ -33,12 +33,15 @@ def cart(request):
         print(order)
         print(created)
         items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
     else:
         items =[]
-        order = {'get_cart_total':0}
+        order = {'get_cart_total':0,'get_cart_items':0,'shipping':False}
+        cartItems = order['get_cart_items']
     context = {
         'items':items,
         'order':order,
+        'cartItems':cartItems,
     }
     return render(request,'cart.html',context)
 def updateItem(request):
@@ -60,3 +63,30 @@ def updateItem(request):
     if orderItem.quantity <= 0:
         orderItem.delete()
     return JsonResponse('item added',safe=False)
+def checkout(request):
+    if request.user.is_authenticated:
+        customer=request.user.customer
+        order,created = Order.objects.get_or_create(customer=customer,complete=False)
+        print(order)
+        print(created)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items =[]
+        order = {'get_cart_total':0,'get_cart_items':0,'shipping':False}
+        cartItems = order['get_cart_items']
+    context = {
+        'items':items,
+        'order':order,
+        'cartItems':cartItems,
+    }
+    return render(request,'checkout.html',context)
+"""
+	<script>
+		var shipping = '{{order.shipping}}'
+		console.log(shipping)
+		if(shipping == 'False'){
+			document.getElementById('shipping-info').innerHTML = ''
+		}
+	</script>
+"""

@@ -20,5 +20,6 @@ from django.conf import settings
 urlpatterns = [
     path('',views.homepage,name='home'),
     path('cart',views.cart,name='cart'),
-    path('update_item/',views.updateItem,name='updateitems')
+    path('update_item/',views.updateItem,name='updateitems'),
+    path('checkout/',views.checkout,name='checkout'),
 ]

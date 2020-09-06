@@ -19,6 +19,9 @@
 	 	<link href="{% static 'css/style.css' %}" rel="stylesheet">	
 		<link href="{% static 'css/responsive.css' %}" rel="stylesheet">	
 		<link href="{% static 'assets/css/semantic.css' %}" rel="stylesheet">	
+		<script>
+			var user = '{{request.user}}'
+		</script>
 	<style>
 		@charset "utf-8";
 
@@ -5214,7 +5217,7 @@ span.valid-part {
 			</div>
 			<div class="right-cart order-1 d-none d-lg-block d-xl-block">
 			    <a href="#" class="cart-btn hover-btn pull-bs-canvas-right" title="Cart">
-				<i class="uil uil-shopping-cart-alt"></i> Cart Item <ins>2</ins><i class="uil uil-angle-down"></i></a>
+				<i class="uil uil-shopping-cart-alt"></i> Cart Item <ins>{{cartItems}}</ins><i class="uil uil-angle-down"></i></a>
 		   </div>
 		   <div class="right-cart order-1 d-xs-block d-sm-block d-md-block d-lg-none d-xl-none">
 				<button class="model-link btn bt-default" data-toggle="modal" data-target="#vej-mobile-search" title="search">
@@ -5277,13 +5280,13 @@ span.valid-part {
 					  <td>
 					     <div class="input-group quantity-vej">
 							<span class="input-group-btn">
-							  <button type="button" class="btn btn-default btn-number bg-green" disabled="disabled" data-type="minus" data-field="quant[4]">
+							  <button type="button" class="btn btn-default btn-number bg-green update-cart" data-product='{{i.product.id}}' data-action='remove'  data-type="minus" data-field="quant[4]">
 								   <i class="fa fa-minus"></i>
 							  </button>
 							</span>
 							<input type="text" name="quant[4]" class="input-number" value="{{i.quantity}}" readonly maxlength="10">
 							<span class="input-group-btn">
-							  <button type="button" class="btn btn-default btn-number bg-green" data-type="plus" data-field="quant[4]">
+							  <button type="button" class="btn btn-default btn-number bg-green update-cart" data-product='{{i.product.id}}' data-action='add'  data-type="plus" data-field="quant[4]">
 								   <i class="fa fa-plus"></i>
 							  </button>
 							</span>
@@ -5626,94 +5629,41 @@ span.valid-part {
 </div>
 	<!-- Choose Category Model End-->
 	<!--  Sidebar Cart Start-->
-<div class="bs-canvas bs-canvas-right vej-model position-fixed bg-cart h-100">
+	<div class="bs-canvas bs-canvas-right vej-model position-fixed bg-cart h-100">
 		<div class="bs-canvas-header sidecart-header p-3 ">
-			<div class="d-inline-block  sidecart-title">My Cart <span>(2 Items)</span></div>
+			<div class="d-inline-block  sidecart-title">My Cart <span>{{cartItems}}</span></div>
 			<button type="button" class="bs-canvas-close close" aria-label="Close"><i class="uil uil-multiply"></i></button>
-		</div>
+		</div> 
 		<div class="bs-canvas-body">
 			<div class="side-cart-items">
+				{% for i in items %}
 				<div class="cart-item">
 					<div class="cart-product-img">
-						<img src="{% static 'img/img-11.jpg' %}" alt="">
-						<div class="offer-bubble">5% OFF</div>
+						<img src="/media/{{i.product.image}}" alt="">
+						<div class="offer-bubble"></div>
 					</div>
 					<div class="cart-text">
-						<h4>organic orange</h4>
-						<div class="cart-radio">
-							<ul class="weight-item">
-								<li>
-									<input type="radio" id="a8" name="cart8">
-									<label for="a1">0.50</label>
-								</li>
-								<li>
-									<input type="radio" id="a7" name="cart7">
-									<label for="a2">1kg</label>
-								</li>
-								<li>
-									<input type="radio" id="a6" name="cart6">
-									<label for="a3">2kg</label>
-								</li>
-								<li>
-									<input type="radio" id="a5" name="cart5">
-									<label for="a4">3kg</label>
-								</li>
-							</ul>
-						</div>
+						<h4>{{i.product.name}}</h4>
 						<div class="qty-group">
 							<div class="quantity buttons_added">
-								<input type="button" value="-" class="minus minus-btn">
-								<input type="number" step="1" name="quantity" value="1" class="input-text qty text">
-								<input type="button" value="+" class="plus plus-btn">
+								<button type="button" class="btn btn-default btn-number bg-green update-cart" data-product='{{i.product.id}}' data-action='remove'  data-type="minus" data-field="quant[4]">
+									<i class="fa fa-minus"></i>
+							   </button>
+								<input  readonly type="number" step="1" name="quantity" value="{{i.quantity}}" class="input-text qty text">
+								<button type="button" class="btn btn-default btn-number bg-green update-cart" data-product='{{i.product.id}}' data-action='add'  data-type="plus" data-field="quant[4]">
+									<i class="fa fa-plus"></i>
+							   </button>
 							</div>
-							<div class="cart-prices">$10 <span>$15</span></div>
+							<div class="cart-prices"><span>${{i.get_total}}</span></div>
 						</div>
-						<button type="button" class="cart-close-btn"><i class="uil uil-multiply"></i></button>
 					</div>
 				</div>
-				<div class="cart-item">
-					<div class="cart-product-img">
-						<img src=" {% static 'img/img-11.jpg' %} " alt="">
-						<div class="offer-bubble">5% OFF</div>
-					</div>
-					<div class="cart-text">
-						<h4>usa orange</h4>
-						<div class="cart-radio">
-							<ul class="weight-item">
-								<li>
-									<input type="radio" id="a1" name="cart1">
-									<label for="a1">0.50</label>
-								</li>
-								<li>
-									<input type="radio" id="a2" name="cart1">
-									<label for="a2">1kg</label>
-								</li>
-								<li>
-									<input type="radio" id="a3" name="cart1">
-									<label for="a3">2kg</label>
-								</li>
-								<li>
-									<input type="radio" id="a4" name="cart1">
-									<label for="a4">3kg</label>
-								</li>
-							</ul>
-						</div>
-						<div class="qty-group">
-							<div class="quantity buttons_added">
-								<input type="button" value="-" class="minus minus-btn">
-								<input type="number" step="1" name="quantity" value="1" class="input-text qty text">
-								<input type="button" value="+" class="plus plus-btn">
-							</div>
-							<div class="cart-prices">$10 <span>$15</span></div>
-						</div>
-						<button type="button" class="cart-close-btn"><i class="uil uil-multiply"></i></button>
-					</div>
-				</div>
+				{% endfor %}
 			</div>
 			<div class="cart-top-total">
 				<div class="main-total-cart">
 					<h4>Organic Super Market</h4>
-					<span>$28</span>
+					<span>${{order.get_cart_total}}</span>
 				</div>
 				<div class="main-total-cart">
 					<h4>Delivery Charges</h4>
@@ -5722,13 +5672,9 @@ span.valid-part {
 			</div>
 		</div>
 	<div class="bs-canvas-footer">
-		<div class="cart-total-dil saving-total ">
-			<h4>Total Saving</h4>
-			<span>$11</span>
-		</div>
 		<div class="main-total-cart">
 			<h2>Total</h2>
-			<span>$35</span>
+			<span>{{order.get_cart_total}}</span>
 		</div>
 		<div class="checkout-cart">
 			<a href="checkout.html" class="promo-code">Have a Coupan?</a>
@@ -5861,5 +5807,9 @@ span.valid-part {
 	<script src="{% static 'assets/js/semantic.js' %}"></script>
 	<script src="{% static 'assets/js/owl.carousel.js' %}"></script>
 	<script src=" {% static 'assets/js/vejcustome.js' %} "></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="{% static 'js/cart.js' %}" ></script>
 </body>
 </html>
