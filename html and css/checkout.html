@@ -5273,7 +5273,7 @@ span.valid-part {
 						</div>
 						<div class="col-md-8 order-md-1">
 						  <h4 class="mb-3">Billing address</h4>
-						<form class="ui form">
+						<form id="forms" class="ui form">
 						  <div class="field">
 							<label>Name</label>
 							<div class="two fields">
@@ -5296,7 +5296,7 @@ span.valid-part {
 							  </div>
 							</div>
 						  </div>
-		
+						<!----
 						  <h4 class="ui dividing header">Billing Information</h4>
 						  <div class="field">
 							<label>Card Type</label>
@@ -5355,8 +5355,15 @@ span.valid-part {
 							  </div>
 							</div>
 						  </div>
-						  <input class="btn btn-primary btn-lg btn-block" value="Continue to checkout" type="submit">
+						  -->
+						  <input id="form-button" class="btn btn-primary btn-lg btn-block" value="Continue to checkout" type="submit">
+						
 						  </form>
+						  <br>
+						  <div hidden id="payment-info">
+							<h4  class="ui dividing header">Billing Information</h4>
+							<input id="make-payment" class="btn btn-primary btn-lg btn-block" value="Make Payment" type="button">
+						  </div>
 						</div>
 					  </div> 
 				</div>
@@ -5790,6 +5797,21 @@ span.valid-part {
 		console.log(shipping)
 		if(shipping == 'False'){
 			document.getElementById('shipping-info').innerHTML = ''
+		}
+		var form = document.getElementById('forms')
+		form.addEventListener('submit',function(e){
+			e.preventDefault()
+			console.log('submite')
+			document.getElementById('form-button').style.visibility = 'hidden'
+			myText = document.getElementById('payment-info')
+			console
+			myText.removeAttribute("hidden"); 
+		})
+		document.getElementById('make-payment').addEventListener('click',function(e){
+			submitFormData()
+		})
+		function submitFormData(){
+			console.log('payment clicked')
 		}
 	</script>
 </body>
