@@ -5868,6 +5868,9 @@ span.valid-part {
 				console.log('Success:',data);
 				alert('Transaction succesfull');
 				window.location.href = "/"
+			cart = {}
+			document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+				window.location.href = '/'
 			})
 		}
 
