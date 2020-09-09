@@ -5371,7 +5371,8 @@ span.valid-part {
 						  <br>
 						  <div hidden id="payment-info">
 							<h4  class="ui dividing header">Billing Information</h4>
-							<input id="make-payment" class="btn btn-primary btn-lg btn-block" value="Make Payment" type="button">
+							<div id="paypal-button-container"></div>
+							<!--<input id="make-payment" class="btn btn-primary btn-lg btn-block" value="Make Payment" type="button">-->
 						  </div>
 						</div>
 					  </div> 
@@ -5791,6 +5792,7 @@ span.valid-part {
 	</div>    
 </div>
 	<!-- mobile menu End-->
+    <script src="https://www.paypal.com/sdk/js?client-id=AQLJzgI58vEu90AFdtuKF2xpXWXZqF0ROHi7kgFPcnHAgIlBmlOCr7zuU9zsUJ3fC8ARa7ceRxMdCZHD&currency=USD"></script>
 	<script src="{% static 'assets/js/jquery.js' %}"></script>
 	<script src="{% static 'assets/js/bootstrap.js' %}"></script>
 	<script src="{% static 'assets/js/dropdown.js' %}"></script>
@@ -5801,6 +5803,34 @@ span.valid-part {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="{% static 'js/cart.js' %}" ></script>
+    <script>
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+			style:{
+				color:'blue'
+			},
+            // Set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '0.01'
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    // Show a success message to the buyer
+                    alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                });
+            }
+
+
+        }).render('#paypal-button-container');
+    </script>
 	<script>
 		var shipping = '{{order.shipping}}'
 		var total = '{{order.get_cart_total|floatformat:2}}'
@@ -5827,9 +5857,11 @@ span.valid-part {
 			
 			myText.removeAttribute("hidden"); 
 		})
+		/*
 		document.getElementById('make-payment').addEventListener('click',function(e){
 			submitFormData()
 		})
+		*/
 		function submitFormData(){
 			console.log('payment clicked')
 			   var userFormData = {
