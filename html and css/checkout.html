@@ -5275,6 +5275,7 @@ span.valid-part {
 						<div id="form-wraper">
 						  <h4 class="mb-3">Billing address</h4>
 						<form id="forms" class="ui form">
+							{% csrf_token %}
 						  <div id="user-info" class="field">
 							<label>Name</label>
 							<div class="two fields">
@@ -5816,6 +5817,8 @@ span.valid-part {
 			myText.removeAttribute("hidden"); 
 		}
 		var form = document.getElementById('forms')
+		csrftoken = form.getElementsByTagName('input')[0].value
+		console.log(csrftoken)
 		form.addEventListener('submit',function(e){
 			e.preventDefault()
 			console.log('submite')
