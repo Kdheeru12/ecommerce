@@ -5371,8 +5371,8 @@ span.valid-part {
 						  <br>
 						  <div hidden id="payment-info">
 							<h4  class="ui dividing header">Billing Information</h4>
-							<div id="paypal-button-container"></div>
-							<!--<input id="make-payment" class="btn btn-primary btn-lg btn-block" value="Make Payment" type="button">-->
+							<!--<div id="paypal-button-container"></div>-->
+							<input id="make-payment" class="btn btn-primary btn-lg btn-block" value="Make Payment" type="button">
 						  </div>
 						</div>
 					  </div> 
@@ -5857,11 +5857,9 @@ span.valid-part {
 			
 			myText.removeAttribute("hidden"); 
 		})
-		/*
 		document.getElementById('make-payment').addEventListener('click',function(e){
 			submitFormData()
 		})
-		*/
 		function submitFormData(){
 			console.log('payment clicked')
 			   var userFormData = {

@@ -19,6 +19,8 @@ class Order(models.Model):
     date_orderd = models.DateTimeField(auto_now_add=True)
     complete =  models.BooleanField(default=False,null=True,blank=False)
     transaction_id = models.CharField(max_length=300,null=True)
+    orderitems = models.TextField(blank=True,null=True)
+    ordertotal = models.FloatField(blank=True,null=True)
     def __str__(self):
         return self.customer.name
     @property

@@ -184,10 +184,14 @@ def processOrder(request):
             )
         """
         customer,order = guestOrder(request,data)
+    dat = cartData(request)
+    ite = dat['items']
     total = float(data['form']['total'])
     order.transaction_id = transaction_id
     if total == order.get_cart_total:
         order.complete = True
+        order.orderitems = str(ite)
+        order.ordertotal = total
     order.save()
     if order.shipping == True:
         ShippingAddress.objects.create(
