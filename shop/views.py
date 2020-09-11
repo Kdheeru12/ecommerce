@@ -82,6 +82,7 @@ def cart(request):
     cartItems = data['cartItems']
     order= data['order']
     items = data['items']
+    print(items)
     context = {
         'items':items,
         'order':order,
@@ -103,6 +104,8 @@ def updateItem(request):
         orderItem.quantity = (orderItem.quantity + 1)
     elif action == 'remove':
         orderItem.quantity = (orderItem.quantity - 1)
+    orderItem.price=float(product.price)
+    orderItem.total_price=float(orderItem.quantity*product.price)
     orderItem.save()
     if orderItem.quantity <= 0:
         orderItem.delete()
@@ -184,13 +187,10 @@ def processOrder(request):
             )
         """
         customer,order = guestOrder(request,data)
-    dat = cartData(request)
-    ite = dat['items']
     total = float(data['form']['total'])
     order.transaction_id = transaction_id
     if total == order.get_cart_total:
         order.complete = True
-        order.orderitems = str(ite)
         order.ordertotal = total
     order.save()
     if order.shipping == True:
@@ -203,3 +203,18 @@ def processOrder(request):
             zipcode =data['shipping']['zipcode'],
         )
     return JsonResponse('payment completed',safe=False)
+def myaccount(request):
+    ode = []
+    order = Order.objects.filter(customer=request.user.customer,complete=True)
+    """
+    for i in order:
+        order = get_object_or_404(Order,id=i.id)
+        print(order.orderitem_set.all().id)
+    for i in ode:
+        print(i)
+    print(ode)
+    """
+    context = {
+        'order':order
+    }
+    return render(request,'customer-account.html',context)

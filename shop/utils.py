@@ -71,6 +71,8 @@ def guestOrder(request,data):
         orderItem = OrderItem.objects.create(
             product=product,
             order=order,
-            quantity=item['quantity']
+            quantity=item['quantity'],
+            price=float(product.price),
+            total_price=float(item['quantity']*product.price)
         )
     return customer,order

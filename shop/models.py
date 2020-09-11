@@ -19,7 +19,6 @@ class Order(models.Model):
     date_orderd = models.DateTimeField(auto_now_add=True)
     complete =  models.BooleanField(default=False,null=True,blank=False)
     transaction_id = models.CharField(max_length=300,null=True)
-    orderitems = models.TextField(blank=True,null=True)
     ordertotal = models.FloatField(blank=True,null=True)
     def __str__(self):
         return self.customer.name
@@ -47,6 +46,8 @@ class OrderItem(models.Model):
     order=models.ForeignKey(Order,on_delete=models.SET_NULL,blank=True,null=True)
     quantity = models.IntegerField(default=0,null=True,blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
+    price = models.DecimalField(max_digits=11,decimal_places=2,blank=True,null=True)
+    total_price = models.DecimalField(max_digits=11,decimal_places=2,blank=True,null=True)
     def __str__(self):
         return str(self.order.id)
     @property
