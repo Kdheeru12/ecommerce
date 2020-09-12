@@ -5245,12 +5245,13 @@ span.valid-part {
  <div class="row">
     <div class="col-md-3 mb-3">
 	<ul class="nav nav-pills flex-column" id="myTab" role="tablist">
-	  <li class="nav-item">
-		<a class="nav-link active bg-whitenav account-radius" id="profile-Setting-tab" data-toggle="tab" href="#profile-Setting" role="tab" aria-selected="true"> <i class="uil uil-user"> </i> Profile</a>
-	  </li>
+	
 	
 	  <li class="nav-item">
-		<a class="nav-link bg-whitenav" id="my-Order-tab" data-toggle="tab" href="#my-Order" role="tab" aria-controls="my-Order" aria-selected="false"><i class="uil uil-cart"> </i>My Order</a>
+		<a class="nav-link active bg-whitenav" id="my-Order-tab" data-toggle="tab" href="#my-Order" role="tab" aria-controls="my-Order" aria-selected="false"><i class="uil uil-cart"> </i>My Order</a>
+	  </li>
+	    <li class="nav-item">
+		<a class="nav-link  bg-whitenav account-radius" id="profile-Setting-tab" data-toggle="tab" href="#profile-Setting" role="tab" aria-selected="true"> <i class="uil uil-user"> </i> Profile</a>
 	  </li>
 	   <li class="nav-item">
 		<a class="nav-link bg-whitenav" id="my-reward-tab" data-toggle="tab" href="#my-reward" role="tab" aria-controls="my-reward" aria-selected="false"> <i class="uil uil-gift"> </i> Reward</a>
@@ -5273,191 +5274,105 @@ span.valid-part {
     </div>
    <div class="col-md-9">
       <div class="tab-content" id="myTabContent">
-			<div class="tab-pane fade show active" id="profile-Setting" role="tabpanel" aria-labelledby="profile-Setting-tab">
-			   <h2> <i class="uil uil-user"> </i> Profile setting</h2>
-				<div class="profile-settingmain">
-					<div class="avatar-upload">
-							<div class="avatar-edit">
-								<input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
-								<label for="imageUpload"></label>
-							</div>
-						<div class="avatar-preview">
-						<div id="imagePreview" 
-							style="background-image: url('img/t3.jpg');">
-						</div>
-						</div>
-					</div>
-					<!-- form section here -->
-					<div class="ui equal width form">
-					<form>
-					  <div class="fields">
-							<div class="field">
-							  <label>Username</label>
-							  <input type="text" placeholder="Username">
-							</div>
-						<div class="field">
-						  <label>Password</label>
-						  <input type="password">
-						</div>
-					  </div>
-					  <div class="fields">
-							<div class="field">
-							  <label>First name</label>
-							  <input type="text" placeholder="First Name">
-							</div>
-							<div class="field">
-							  <label>Middle name</label>
-							  <input type="text" placeholder="Middle Name">
-							</div>
-							<div class="field">
-							  <label>Last name</label>
-							  <input type="text" placeholder="Last Name">
-							</div>
-					  </div>
-						<div class="fields">
-								<div class="field">
-								  <label>Mobile No</label>
-								  <input type="tel" placeholder="Mobile No">
-								</div>
-							<div class="field">
-							  <label>Email</label>
-							<input type="email" placeholder="Email">
-							</div>
-						</div>
-						<div class="text-right ">
-						<button class="ui primary basic button">Update</button>
-						</div>
-						</form>
-					</div>
-					<!-- form section here -->
-				</div>
-			</div>
-		    <div class="tab-pane fade" id="my-Order" role="tabpanel" aria-labelledby="my-Order-tab">
+			
+		    <div class="tab-pane fade show active" id="my-Order" role="tabpanel" aria-labelledby="my-Order-tab">
 			   <h2> <i class="uil uil-cart"> </i> Order</h2>
 			   <div class="order-settingmain">
-				{% for j in order %}
-				{{j}}
-				{{i.product.name}}
-				{% endfor %}
+				
 				     <div class="border-btm">
-						 <div class="order-heading m-3 ">
-							Delivery Time 10 Feb 2020, 8.00AM - 6.00PM
-						 </div>
 					 </div>
 					   <div class="row"></div>
 					    <div class="order-main">
+							{% for i in order %}
 					        <div class="order-main-top border-btm">
 							    <ul class="order-img">
-								   <li><img src="img/pd-2.png" class="mini" alt=" product image" /> </li>
+								   <li><img  class="mini"/> </li>
 								    <li class="ml-1">
-								   <p> <strong>Bottel Milk - 2 Liter</strong></p> 
-								   <p> Dairy Product </p> 
+								   <p> <strong>{{i.date_orderd}}</strong></p> 
+								   <p>{{i.transaction_id}} </p> 
 								   <p> Delivered by - Super market Singapore</p> 
-								   <p> Price<strong>$59 </strong></p> 
-								   </li>
-								</ul>
-							</div>
-							<div class="order-main-top border-btm">
-							    <ul class="order-img">
-								   <li><img src="img/p-d1.png" class="mini" alt=" product image" /> </li>
-								   <li class="ml-1">
-								   <p> <strong>Grocery Bundle</strong></p> 
-								   <p> Grocery Product </p> 
-								   <p> Delivered by - Super market Singapore</p> 
-								     <p> Price <strong>$ 159 </strong></p> 
-								   </li>
-								</ul>
-							</div>
-							<div class="order-main-top border-btm">
-							    <div class="order-subtotal">
-									<div class="row mb-3">
-											<div class="col">
-											 <p>Sub Total</p>
-											</div>
-											<div class="col">
-											  <p class="text-right"> $277</p>
-											</div>
+								   <div class="row">
+									<div class="col">
+									 <p> <strong> Total </strong></p>
 									</div>
-									<div class="row mb-3">
-										<div class="col">
-										 <p>Delivery Charges</p>
-										</div>
-										<div class="col">
-										  <p class="text-right"> $5</p>
-										</div>
-									</div>
-									<div class="row mb-3">
-										<div class="col">
-										 <p>Service Tax</p>
-										</div>
-										<div class="col">
-										  <p class="text-right"> $10</p>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col">
-										 <p> <strong> Total </strong></p>
-										</div>
-										<div class="col">
-										  <p class="text-right"> <strong> $292 </strong></p>
-										</div>
+									<div class="col">
+									  <p class="text-right"> <strong> {{i.ordertotal}} </strong></p>
 									</div>
 								</div>
-								</div>
-								<div class="order-tracking">
-									<h4> Order Track</h4>
-							
-									<div class="card">
-										<div class="row d-flex justify-content-between px-3 top">
-											<div class="d-flex">
-												<h5>ORDER <span class="text-primary font-weight-bold">#Y34XDHR</span></h5>
-											</div>
-											<div class="d-flex flex-column text-sm-right">
-												<p class="mb-0">Expected Arrival <span>01/03/2020</span></p>
-												<p>USPS <span class="font-weight-bold">234094567242423422898</span></p>
-											</div>
-										</div> <!-- Add class 'active' to progress -->
-										<div class="row d-flex justify-content-center">
-											<div class="col-12">
-												<ul id="progressbar" class="text-center">
-													<li class="active step0"></li>
-													<li class="active step0"></li>
-													<li class="active step0"></li>
-													<li class="step0"></li>
-												</ul>
-											</div>
-										</div>
-										<div class="row justify-content-between top2">
-											<div class="row d-flex icon-content"> <img class="icon" src="img/order-1.png" alt=" product image" />
-												<div class="d-flex flex-column">
-													<p class="font-weight-bold">Order<br>Processed</p>
-												</div>
-											</div>
-											<div class="row d-flex icon-content"> <img class="icon" src="img/order-2.png" alt=" product image" />
-												<div class="d-flex flex-column">
-													<p class="font-weight-bold">Order<br>Shipped</p>
-												</div>
-											</div>
-											<div class="row d-flex icon-content"> <img class="icon" src="img/order-3.png" alt=" product image" />
-												<div class="d-flex flex-column">
-													<p class="font-weight-bold">Order<br>En Route</p>
-												</div>
-											</div>
-											<div class="row d-flex icon-content"> 
-											<img class="icon" src="img/order-4.png" alt=" product image" />
-										
-												<div class="d-flex flex-column">
-													<p class="font-weight-bold">Order<br>Arrived</p>
-												</div>
-											</div>
-										</div>
+								<form action="/my" method="POST" >
+									{% csrf_token %}
+									<input type="text" value="{{i.id}}" name="id" hidden readonly>
+									<button class="btn btn-outline-secondary"> orderitems </button>
+								</form>
 								
-								</div>	
-								</div>
+								   </li>
+								</ul>
+								
+							</div>
+							{% endfor %}
 						</div>
 				   <br/>
 			   </div>
 		   </div>
+		   <div class="tab-pane fade" id="profile-Setting" role="tabpanel" aria-labelledby="profile-Setting-tab">
+			<h2> <i class="uil uil-user"> </i> Profile setting</h2>
+			 <div class="profile-settingmain">
+				 <div class="avatar-upload">
+						 <div class="avatar-edit">
+							 <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+							 <label for="imageUpload"></label>
+						 </div>
+					 <div class="avatar-preview">
+					 <div id="imagePreview" 
+						 style="background-image: url('img/t3.jpg');">
+					 </div>
+					 </div>
+				 </div>
+				 <!-- form section here -->
+				 <div class="ui equal width form">
+				 <form>
+				   <div class="fields">
+						 <div class="field">
+						   <label>Username</label>
+						   <input type="text" placeholder="Username">
+						 </div>
+					 <div class="field">
+					   <label>Password</label>
+					   <input type="password">
+					 </div>
+				   </div>
+				   <div class="fields">
+						 <div class="field">
+						   <label>First name</label>
+						   <input type="text" placeholder="First Name">
+						 </div>
+						 <div class="field">
+						   <label>Middle name</label>
+						   <input type="text" placeholder="Middle Name">
+						 </div>
+						 <div class="field">
+						   <label>Last name</label>
+						   <input type="text" placeholder="Last Name">
+						 </div>
+				   </div>
+					 <div class="fields">
+							 <div class="field">
+							   <label>Mobile No</label>
+							   <input type="tel" placeholder="Mobile No">
+							 </div>
+						 <div class="field">
+						   <label>Email</label>
+						 <input type="email" placeholder="Email">
+						 </div>
+					 </div>
+					 <div class="text-right ">
+					 <button class="ui primary basic button">Update</button>
+					 </div>
+					 </form>
+				 </div>
+				 <!-- form section here -->
+			 </div>
+		 </div>
 			 <div class="tab-pane fade" id="my-reward" role="tabpanel" aria-labelledby="my-reward-tab">
 			   <h2>Rewards</h2>
 			    <div class="reward-main">

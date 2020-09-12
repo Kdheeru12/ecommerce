@@ -189,9 +189,13 @@ def processOrder(request):
         customer,order = guestOrder(request,data)
     total = float(data['form']['total'])
     order.transaction_id = transaction_id
-    if total == order.get_cart_total:
+    print(total)
+    print(order.get_cart_total)
+    if int(total) == int(order.get_cart_total):
         order.complete = True
         order.ordertotal = total
+    print(order.complete)
+    print(order.ordertotal)
     order.save()
     if order.shipping == True:
         ShippingAddress.objects.create(
@@ -204,17 +208,18 @@ def processOrder(request):
         )
     return JsonResponse('payment completed',safe=False)
 def myaccount(request):
-    ode = []
-    order = Order.objects.filter(customer=request.user.customer,complete=True)
-    """
-    for i in order:
-        order = get_object_or_404(Order,id=i.id)
-        print(order.orderitem_set.all().id)
-    for i in ode:
-        print(i)
-    print(ode)
-    """
-    context = {
+    if request.method == 'POST':
+        i = request.POST['id']
+        order = get_object_or_404(Order,id=i)
+        items = order.orderitem_set.all()
+        context = {
+            'items':items,
+            'order':order
+        }
+        return render(request,'order-items.html',context)
+    else:
+        order = Order.objects.filter(complete=True)
+        context = {
         'order':order
-    }
-    return render(request,'customer-account.html',context)
+        }
+        return render(request,'customer-account.html',context)
