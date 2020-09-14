@@ -4944,7 +4944,7 @@ span.valid-part {
 <header class="vej-header clearfix">
 	<div class="vej-top-header d-none d-lg-block d-xl-block">
 		<div class="vej-logo"> 
-				<a href="index.html"> <img src="{% static 'img/logo.jpg' %}" alt="logo" /> </a>
+				<a href="/"> <img src="{% static 'img/logo.jpg' %}" alt="logo" /> </a>
 		</div>
 			<div class="vej-selectcity">
 				<div class="ui dropdown selection">
@@ -5009,19 +5009,19 @@ span.valid-part {
 					 <i class="dropdown icon"></i>
 					  <div class="menu">
 						<div class="item city-item" data-value="1">
-							<a href="customer-account.html">	
+							<a href="/my">	
 								<i class="uil uil-user"></i>
 								Account
 							</a>
 						</div>
 						<div class="item city-item" data-value="1">
-							<a href="customer-account.html">	
+							<a href="/my">	
 								<i class="uil uil-cog"></i>
 								Setting
 							</a>
 						</div>
 						<div class="item city-item" data-value="1">
-							<a href="logout.html">	
+							<a href="/logout">	
 								<i class="uil uil-power"></i>
 								Logout
 							</a>
@@ -5081,19 +5081,19 @@ span.valid-part {
 					 <i class="dropdown icon"></i>
 					  <div class="menu">
 						<div class="item city-item" data-value="1">
-							<a href="customer-account.html">	
+							<a href="/my">	
 								<i class="uil uil-cog"></i>
 								Account
 							</a>
 						</div>
 						<div class="item city-item" data-value="1">
-							<a href="customer-account.html">	
+							<a href="/my">	
 								<i class="uil uil-cog"></i>
 								Setting
 							</a>
 						</div>
 						<div class="item city-item" data-value="1">
-							<a href="logout.html">	
+							<a href="/logout">	
 								<i class="uil uil-power"></i>
 								Logout
 							</a>
@@ -5125,7 +5125,7 @@ span.valid-part {
 		  <div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav main-nav align-self-stretch">
 			  <li class="nav-item active">
-				<a class="nav-link" href="index.html">Home <span class="sr-only">(Home)</span></a>
+				<a class="nav-link" href="/">Home <span class="sr-only">(Home)</span></a>
 			  </li>
 			  <li class="nav-item">
 				<a class="nav-link" href="about.html">About Us</a>
@@ -5165,10 +5165,10 @@ span.valid-part {
 						</div>
 					 <i class="dropdown icon"></i>
 					<div class="menu">
-						<a href="cart.html" class="item city-item" data-value="1">
+						<a href="/cart" class="item city-item" data-value="1">
 							Cart
 						</a>	
-						<a href="checkout.html" class="item city-item" data-value="1">
+						<a href="/checkout" class="item city-item" data-value="1">
 							Checkout
 						</a>	
 						<a href="payment-successfully.html" class="item city-item" data-value="1">
@@ -5189,10 +5189,10 @@ span.valid-part {
 						<a href="register.html" class="item city-item" data-value="1">
 							Sign Up
 						</a>
-						<a href="login.html" class="item city-item" data-value="1">
+						<a href="/login" class="item city-item" data-value="1">
 							Login
 						</a>
-						<a href="logout.html" class="item city-item" data-value="1">
+						<a href="/logout" class="item city-item" data-value="1">
 							Logout
 						</a>
 						<a href="reset-password.html" class="item city-item" data-value="1">
@@ -5218,15 +5218,15 @@ span.valid-part {
 			</a>
 		</div>
 		<div class="right-cart order-1 d-none d-lg-block d-xl-block">
-			<a href="#" class="cart-btn hover-btn pull-bs-canvas-right" title="Cart">
+			<a href="/cart" class="cart-btn hover-btn pull-bs-canvas-right" title="Cart">
 			<i class="uil uil-shopping-cart-alt"></i> Cart Item <ins>{{cartItems}}</ins><i class="uil uil-angle-down"></i></a>
 	   </div>
 	   <div class="right-cart order-1 d-xs-block d-sm-block d-md-block d-lg-none d-xl-none">
 			<button class="model-link btn bt-default" data-toggle="modal" data-target="#vej-mobile-search" title="search">
 			<i class="uil uil-search"></i>
 			</button>
-			<a href="#" class="cart-btn hover-btn pull-bs-canvas-right" title="Cart">
-			<i class="uil uil-shopping-cart-alt"></i><ins>2</ins><i class="uil uil-angle-down"></i></a>
+			<a href="/cart" class="cart-btn hover-btn pull-bs-canvas-right" title="Cart">
+			<i class="uil uil-shopping-cart-alt"></i><ins>{{cartItems}}</ins><i class="uil uil-angle-down"></i></a>
 	   </div>
 	    </div>
 	</header>
@@ -5237,7 +5237,7 @@ span.valid-part {
 	<div class="brudscrum">
 		<div class="container">
 		    <h2> Grocery Super market <i class="uil uil-store"> </i>Category</h2> 
-			  <p><a href="index.html"> <i class="uil uil-home"> </i>  Home</a> <span>/</span> 
+			  <p><a href="/"> <i class="uil uil-home"> </i>  Home</a> <span>/</span> 
 			  <a href="category.html"> Category </a></p>
 		</div>
 	</div>	
@@ -5278,8 +5278,8 @@ span.valid-part {
 						</a>
 							<ul class="social">
 										<li><a href="product-detail.html" data-tip="View"><i class="fa fa-search"></i></a></li>
-										<li><a href="customer-account.html" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-										<li><a href="cart.html" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+										<li><a href="/my" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+										<li><a href="/cart" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
 									</ul>
 						<span class="product-new-label">Sale</span>
 						<span class="product-discount-label">20%</span>
@@ -5375,9 +5375,9 @@ span.valid-part {
 						<div class="vej-second-row-item">
 							<h4>Useful Links</h4>
 							<ul>
-								<li><a href="cart.html">Cart</a></li>
-								<li><a href="checkout.html">Checkout</a></li>
-								<li><a href="login.html">Login</a></li>
+								<li><a href="/cart">Cart</a></li>
+								<li><a href="/checkout">Checkout</a></li>
+								<li><a href="/login">Login</a></li>
 								<li><a href="register.html">Register</a></li>
 								<li><a href="faq.html">FAQ</a></li>
 								<li><a href="coming-soon.html">Coming Soon</a></li>
@@ -5657,8 +5657,8 @@ span.valid-part {
 			<span>$35</span>
 		</div>
 		<div class="checkout-cart">
-			<a href="checkout.html" class="promo-code">Have a Coupan?</a>
-			<a href="checkout.html" class="cart-checkout-btn vej-btnhover">Proceed to Checkout</a>
+			<a href="/checkout" class="promo-code">Have a Coupan?</a>
+			<a href="/checkout" class="cart-checkout-btn vej-btnhover">Proceed to Checkout</a>
 		</div>
 	</div>
 </div>
@@ -5749,7 +5749,7 @@ span.valid-part {
 
 		<ul class="nav flex-column flex-nowrap overflow-hidden text-center">
 			<li class="nav-item">
-				<a class="nav-link text-truncate" href="index.html"><span class="d-sm-inline"> HOME</span></a>
+				<a class="nav-link text-truncate" href="/"><span class="d-sm-inline"> HOME</span></a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link collapsed text-truncate" href="#submenu1" data-toggle="collapse" data-target="#submenu1"> <span class=" d-sm-inline">Pages</span></a>
@@ -5759,11 +5759,11 @@ span.valid-part {
 						<li class="nav-item"><a class="nav-link py-0 p-1" href="product-detail.html"><span>Product Detail</span></a></li>
 						<li class="nav-item"><a class="nav-link py-0 p-1" href="blog.html"><span>Blog</span></a></li>
 						<li class="nav-item"><a class="nav-link py-0 p-1" href="blog-detail.html"><span>Blog Detail</span></a></li>
-						<li class="nav-item"><a class="nav-link py-0 p-1" href="cart.html"><span>Cart</span></a></li>
-						<li class="nav-item"><a class="nav-link py-0 p-1" href="checkout.html"><span>checkout</span></a></li>
+						<li class="nav-item"><a class="nav-link py-0 p-1" href="/cart"><span>Cart</span></a></li>
+						<li class="nav-item"><a class="nav-link py-0 p-1" href="/checkout"><span>checkout</span></a></li>
 						<li class="nav-item"><a class="nav-link py-0 p-1" href="register.html"><span>Register</span></a></li>
-						<li class="nav-item"><a class="nav-link py-0 p-1" href="login.html"><span>Login</span></a></li>
-						<li class="nav-item"><a class="nav-link py-0 p-1" href="logout.html"><span>Logout</span></a></li>
+						<li class="nav-item"><a class="nav-link py-0 p-1" href="/login"><span>Login</span></a></li>
+						<li class="nav-item"><a class="nav-link py-0 p-1" href="/logout"><span>Logout</span></a></li>
 					</ul>
 				</div>
 			</li>

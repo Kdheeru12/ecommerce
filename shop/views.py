@@ -125,15 +125,21 @@ def checkout(request):
         order= cookieData['order']
         items = cookieData['items']
     """
+    
     data = cartData(request)
     cartItems = data['cartItems']
     order= data['order']
     items = data['items']
+    print(order)
+    import razorpay
+    client = razorpay.Client(auth=("rzp_test_eRBggL6wBqghkr","ZnQIhn51viSUENPlleeaIOFH"))
+    #razo_pay = client.order.create({'amount':order.get_cart_total*100, 'currency':'INR','payment_capture':'1'})
     context = {
         'items':items,
         'order':order,
         'cartItems':cartItems,
-    }
+        #'razo_pay':razo_pay,
+    }    
     return render(request,'checkout.html',context)
 def processOrder(request):
     transaction_id = datetime.datetime.now().timestamp()
@@ -212,14 +218,26 @@ def myaccount(request):
         i = request.POST['id']
         order = get_object_or_404(Order,id=i)
         items = order.orderitem_set.all()
+        data = cartData(request)
+        cartItems = data['cartItems']
+        order= data['order']
+        ite = data['items']
         context = {
             'items':items,
-            'order':order
+            'order':order,
+            'cartItems':cartItems,
+            'ite':ite,
         }
         return render(request,'order-items.html',context)
     else:
+        data = cartData(request)
+        cartItems = data['cartItems']
+        order= data['order']
+        ite = data['items']
         order = Order.objects.filter(complete=True)
         context = {
-        'order':order
+        'order':order,
+        'cartItems':cartItems,
+        'ite':ite,
         }
         return render(request,'customer-account.html',context)
