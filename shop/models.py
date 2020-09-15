@@ -20,6 +20,8 @@ class Order(models.Model):
     complete =  models.BooleanField(default=False,null=True,blank=False)
     transaction_id = models.CharField(max_length=300,null=True)
     ordertotal = models.FloatField(blank=True,null=True)
+    acceptorder = models.BooleanField(default=False,blank=True,null=True)
+    declineorder = models.BooleanField(default=False,blank=True,null=True)
     def __str__(self):
         return self.customer.name
     @property

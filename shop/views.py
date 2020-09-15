@@ -241,3 +241,18 @@ def myaccount(request):
         'ite':ite,
         }
         return render(request,'customer-account.html',context)
+def orderstatus(request):
+    print('gotir')
+    data = json.loads(request.body)
+    productId = data['productId']
+    action = data['action']
+    print('Action',action)
+    print('Actios',productId)
+    order = get_object_or_404(Order,id=productId)
+    print(order)
+    if action == 'add':
+        order.acceptorder = True
+    elif action == 'remove':
+        order.declineorder = True
+    order.save()
+    return JsonResponse('order status',safe=False)

@@ -23,5 +23,6 @@ urlpatterns = [
     path('update_item/',views.updateItem,name='updateitems'),
     path('checkout/',views.checkout,name='checkout'),
     path('process_order/',views.processOrder,name='processorder'),
-    path('my',views.myaccount,name='myaccount')
+    path('my',views.myaccount,name='myaccount'),
+    path('order_owner',views.orderstatus,name='order_owner'),
 ]
