@@ -5304,19 +5304,17 @@ span.valid-part {
 									<input type="text" value="{{i.id}}" name="id" hidden readonly>
 									<button class="btn btn-outline-secondary"> orderitems </button>
 								</form>
-								{% if user.is_staff %}
 								{% if i.declineorder == False and i.acceptorder == False %}
 								<div class="quantity buttons_added">
 									<button type="button" class="btn btn-default btn-number bg-green order-status" style="background-color: red;" data-product='{{i.id}}' data-action='remove'  data-type="minus" data-field="quant[4]">
-										Decline Order 
+										Decline Order {{i.declineorder}}
 								   </button>
 									<input  readonly type="number" step="1" name="quantity" value="{{i.quantity}}" class="input-text qty text">
 									<button type="button" class="btn btn-default btn-number bg-green order-status" data-product='{{i.id}}' data-action='add'  data-type="plus" data-field="quant[4]">
-										Accept Order 
+										Accept Order {{i.acceptorder}}
 								   </button>
 								</div>
 								{% endif %}
-								<!--		
 								{% if i.acceptorder %}
 								<div style="color: green;" >
 									You have Accepted the order
@@ -5325,21 +5323,6 @@ span.valid-part {
 								{% if i.declineorder %}
 								<div style="color: red;" >
 								You have Declined the order
-								</div>
-								{% endif %}
-								-->
-								{% endif %}
-								{% if i.declineorder == False and i.acceptorder == False %}
-								<div style="color: orange;">
-									status: orderplaced
-								</div>
-								{% elif i.acceptorder %}
-								<div style="color: green;">
-									status: orderaccpeted
-								</div>
-								{% elif i.declineorder %}
-								<div style="color: red;">
-									status: orderdeclined by shop
 								</div>
 								{% endif %}
 								   </li>

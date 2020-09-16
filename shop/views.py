@@ -216,12 +216,13 @@ def processOrder(request):
 def myaccount(request):
     if request.method == 'POST':
         i = request.POST['id']
-        order = get_object_or_404(Order,id=i)
-        items = order.orderitem_set.all()
         data = cartData(request)
         cartItems = data['cartItems']
         order= data['order']
         ite = data['items']
+        order = get_object_or_404(Order,id=i)
+        items = order.orderitem_set.all()
+        print(order)
         context = {
             'items':items,
             'order':order,
@@ -234,13 +235,49 @@ def myaccount(request):
         cartItems = data['cartItems']
         order= data['order']
         ite = data['items']
-        order = Order.objects.filter(complete=True)
+        if request.user.is_staff:
+            order = Order.objects.filter(complete=True).order_by('date_orderd')
+        elif request.user.is_authenticated :
+            order = Order.objects.filter(customer=request.user.customer,complete=True).order_by('date_orderd')
+        else:
+            order = None
         context = {
         'order':order,
         'cartItems':cartItems,
         'ite':ite,
         }
         return render(request,'customer-account.html',context)
+"""
+def owner(request):
+    if request.method == 'POST':
+        i = request.POST['id']
+        data = cartData(request)
+        cartItems = data['cartItems']
+        order= data['order']
+        ite = data['items']
+        order = get_object_or_404(Order,id=i)
+        items = order.orderitem_set.all()
+        print(order)
+        context = {
+            'items':items,
+            'order':order,
+            'cartItems':cartItems,
+            'ite':ite,
+        }
+        return render(request,'owner-items.html',context)
+    else:
+        data = cartData(request)
+        cartItems = data['cartItems']
+        order= data['order']
+        ite = data['items']
+        order = Order.objects.filter(complete=True)
+        context = {
+        'order':order,
+        'cartItems':cartItems,
+        'ite':ite,
+        }
+        return render(request,'owner-account.html',context) 
+""" 
 def orderstatus(request):
     print('gotir')
     data = json.loads(request.body)
