@@ -219,15 +219,17 @@ def myaccount(request):
         data = cartData(request)
         cartItems = data['cartItems']
         order= data['order']
+        print(order.get_cart_total)
         ite = data['items']
-        order = get_object_or_404(Order,id=i)
-        items = order.orderitem_set.all()
-        print(order)
+        print(ite)
+        orde = get_object_or_404(Order,id=i)
+        items = orde.orderitem_set.all()
         context = {
             'items':items,
             'order':order,
             'cartItems':cartItems,
             'ite':ite,
+            'orde':orde
         }
         return render(request,'order-items.html',context)
     else:
