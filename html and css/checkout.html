@@ -4971,14 +4971,17 @@ span.valid-part {
 				  </div>
 				</div>
 			</div>
-		<div class="vejsearch">
-			<div class="ui search">
-			  <div class="ui left icon input search-wide">
-				<input class="prompt" type="text" placeholder="Search for products..">
-				<i class="uil uil-search-alt icon icon1"></i>
-			  </div>
+			<div class="vejsearch">
+				<div class="ui search">
+				<form action="/">
+					<div class="ui left icon input search-wide">
+					<input class="prompt" type="text" placeholder="Search for products.." autocomplete="off" name="q" value="{{request.GET.q}}">
+						
+						<i class="uil uil-search-alt icon icon1"></i>
+					  </div>
+				</form>
+				</div>
 			</div>
-		</div>
 	<!-- link -->	
 		<div class="top-right text-right">
 		 <ul class="list-inline">

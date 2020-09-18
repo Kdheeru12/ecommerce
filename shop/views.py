@@ -9,6 +9,8 @@ import json
 import datetime
 from .models import *
 from .utils import cookieCart,cartData,guestOrder
+from django.core.paginator import Paginator
+from django.db.models import Q
 # Create your views here.
 def homepage(request):
     """
@@ -28,6 +30,13 @@ def homepage(request):
     order= data['order']
     items = data['items']
     products = Product.objects.all()
+    query = request.GET.get("q")
+    if query:
+        products = Product.objects.filter(
+            Q(name__icontains=query)
+        )
+        if Product.objects.filter(Q(name__icontains=query)).count() == 0:
+            products = Product.objects.all()      
     context = {
         'products':products,
         'cartItems':cartItems,
