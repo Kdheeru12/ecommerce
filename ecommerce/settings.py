@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    
+#   'ecommerce.apps.DjangoSuitsConfig',
     'shop.apps.ShopConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'jet.dashboard',
+    'jet',
 ]
 
 
@@ -64,6 +68,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
+                
             ],
         },
     },
@@ -122,6 +128,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+STATIC_ROOT = os.path.join(BASE_DIR,'statics')
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 MEDIA_URL = '/media/'
@@ -138,3 +145,5 @@ EMAIL_HOST_PASSWORD = 'Kmunna122001'
 EMAIL_PORT = 587
 
 EMAIL_USE_TLS = True
+JET_PROJECT = 'dheeraj'
+JET_TOKEN = '509542f4-c3b9-47b8-bab6-ab5049744230'

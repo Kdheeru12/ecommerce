@@ -1,0 +1,61 @@
+
+/* ------------------------------------------------------------------
+ * Name         : vegsu Vegtiable Supermarket HTML template
+ * File         : Responsive.css
+ * Author       : tmdstudio
+ * Author URI   : tmdstudio
+ * All Rights Reserved.
+ * --------------------------------------------------------------------- */
+.modal {
+    background: #73BA76;
+	opacity: 0.9;
+}
+
+ @media (max-width: 1190px) {
+    .top-right .tollfree-link {
+          margin-right: 10px;
+     }
+	 .top-right .ui.dropdown .img-circle{
+		 display:none;
+	 }
+ }
+ @media (max-width: 1040px) {
+	.top-right .tollfree-link {
+     margin-right: 0px;
+	 
+    }
+	.vej-logo {
+		float: left;
+		width: 50px;
+		margin-left: 10px;
+		margin-top:10px;
+		}
+	.vej-selectcity {
+		margin-left: -3px;
+		float: left;
+		margin-top: 0px;
+	}	
+  .top-right {
+    margin-left: auto;
+    padding-right: 4px;
+  }
+ .ui.selection.dropdown{
+      z-index: 999999;
+    }
+ }
+@media screen and (max-width: 992px) {
+    .order-settingmain .icon-content {
+         width: 50%
+    }
+}
+
+@media only screen and (max-width:990px){
+		.vej-product-grid{
+			margin-bottom:30px;
+		}
+      }
+ 
+@media (max-width: 480px) {
+	.coupon-code img{width:100%;}
+	.customedisplay{display:none!important;}  
+  }

@@ -23,7 +23,7 @@ class Order(models.Model):
     acceptorder = models.BooleanField(default=False,blank=True,null=True)
     declineorder = models.BooleanField(default=False,blank=True,null=True)
     def __str__(self):
-        return self.customer.name
+        return str(self.id)
     @property
     def shipping(self):
         shipping = False

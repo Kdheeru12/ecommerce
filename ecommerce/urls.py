@@ -24,4 +24,10 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('shop.urls')),
+    path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
+    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns +=  static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+admin.site.site_header = "OWNERS LOGIN"
+admin.site.site_title = "UMSRA Admin Portal"
+admin.site.index_title = "WELCOME owner change update the products price here"
